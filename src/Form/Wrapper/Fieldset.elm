@@ -1,7 +1,7 @@
 module Form.Wrapper.Fieldset exposing (..)
 
 import Html.App as Html
-import Html exposing (Html, div, input, label, text)
+import Html exposing (Html, div, input, label, text, fieldset, legend)
 import Html.Attributes exposing (class, for, id, type')
 --import Html.Events exposing (onInput)
 
@@ -82,8 +82,8 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div []
-      [ label [ for model.name ] [ text model.name ]
+  fieldset []
+      [ legend [] [ text model.name ]
       , div [] <|
         (List.map viewTextInput model.textInputs) ++
         (List.map viewNumberInput model.numberInputs)
