@@ -3,9 +3,7 @@ module Form.Wrapper.Fieldset exposing (..)
 import Html.App as Html
 import Html exposing (Html, div, input, label, text, fieldset, legend)
 import Html.Attributes exposing (class, for, id, type')
---import Html.Events exposing (onInput)
 
---import Form.Input
 import Form.Input.Text
 import Form.Input.Number
 

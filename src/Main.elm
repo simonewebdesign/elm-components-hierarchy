@@ -26,28 +26,12 @@ main =
 --  - A fieldset
 --  - A text field
 --  - A number field
-
-
 type alias Model =
   { fieldset : Form.Wrapper.Fieldset.Model
   , text : Form.Input.Text.Model
   , number : Form.Input.Number.Model
   , datePicker : Form.Input.DatePicker.Model
   }
-  --{ inputs : List ( Path, Form.Input.Input )
-  --, fieldsets : List ( ID, Form.Input.Fieldset )
-  --}
-
---type alias Path =
---  List String
-
---type alias ID =
---  String
-
---type Input
---  = IText Text
---  | INumber Number
-
 
 initialModel : Model
 initialModel =
@@ -71,7 +55,6 @@ type Msg
   | TextMsg Form.Input.Text.Msg
   | NumberMsg Form.Input.Number.Msg
   | DatePickerMsg Form.Input.DatePicker.Msg
-  --| UpdateInput Path Input
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -90,23 +73,7 @@ update msg model =
       { model | number = Form.Input.Number.update subMsg model.number } ! []
 
     DatePickerMsg subMsg ->
-      { model | datePicker = Form.Input.DatePicker.update subMsg model.datePicker } ! []    
-
-    --UpdateInput path newInput ->
-    --  let
-    --    updateInput =
-    --      \( aPath, input ) ->
-    --        if aPath == path then
-    --          case input of
-    --            IText mdl ->
-    --              ( path, IText <| Form.Input.Text.update (Form.Input.Text.Change newVal) mdl )
-
-    --            INumber mdl ->
-    --              ( path, INumber <| Form.Input.Number.update (Form.Input.Number.Change newVal) mdl )
-    --        else
-    --          ( aPath, input )
-    --  in
-    --    { model | inputs = List.map updateInput model.inputs } ! []
+      { model | datePicker = Form.Input.DatePicker.update subMsg model.datePicker } ! []
 
 
 -- SUBSCRIPTIONS
@@ -130,10 +97,4 @@ view model =
         , Html.map NumberMsg (Form.Input.Number.view model.number)
         , Html.map DatePickerMsg (Form.Input.DatePicker.view model.datePicker)
         ]
-    --, div
-    --    [ class "buttons" ]
-    --    [ button
-    --        [ onClick <| UpdateInput ["someTextField"] <| IText <| Form.Input.Text.Model "someTextField" "changed!" ]
-    --        [ text "Change the value of someTextField" ]
-    --    ]
     ]
