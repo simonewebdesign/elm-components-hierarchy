@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Form.Input
 import Form.Input.Text
 import Form.Input.Number
+import Form.Input.DatePicker
 import Form.Wrapper.Fieldset
 
 
@@ -31,6 +32,7 @@ type alias Model =
   { fieldset : Form.Wrapper.Fieldset.Model
   , text : Form.Input.Text.Model
   , number : Form.Input.Number.Model
+  , datePicker : Form.Input.DatePicker.Model
   }
   --{ inputs : List ( Path, Form.Input.Input )
   --, fieldsets : List ( ID, Form.Input.Fieldset )
@@ -52,6 +54,7 @@ initialModel =
   { fieldset = Form.Wrapper.Fieldset.initialModel
   , text = Form.Input.Text.initialModel
   , number = Form.Input.Number.initialModel
+  , datePicker = Form.Input.DatePicker.initialModel
   }
 
 
@@ -67,6 +70,7 @@ type Msg
   | FieldsetMsg Form.Wrapper.Fieldset.Msg
   | TextMsg Form.Input.Text.Msg
   | NumberMsg Form.Input.Number.Msg
+  | DatePickerMsg Form.Input.DatePicker.Msg
   --| UpdateInput Path Input
 
 
@@ -84,6 +88,9 @@ update msg model =
 
     NumberMsg subMsg ->
       { model | number = Form.Input.Number.update subMsg model.number } ! []
+
+    DatePickerMsg subMsg ->
+      { model | datePicker = Form.Input.DatePicker.update subMsg model.datePicker } ! []    
 
     --UpdateInput path newInput ->
     --  let
@@ -121,6 +128,7 @@ view model =
         [ Html.map FieldsetMsg (Form.Wrapper.Fieldset.view model.fieldset)
         , Html.map TextMsg (Form.Input.Text.view model.text)
         , Html.map NumberMsg (Form.Input.Number.view model.number)
+        , Html.map DatePickerMsg (Form.Input.DatePicker.view model.datePicker)
         ]
     --, div
     --    [ class "buttons" ]
