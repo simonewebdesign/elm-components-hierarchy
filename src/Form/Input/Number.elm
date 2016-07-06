@@ -5,6 +5,7 @@ import Html exposing (Html, div, input, label, text)
 import Html.Attributes exposing (class, for, id, type')
 import Html.Events exposing (onInput)
 
+type alias Number = Model
 
 type alias Model =
   { name : String

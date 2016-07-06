@@ -5,6 +5,8 @@ import Html.Attributes exposing (class, for, id, type')
 import Html.Events exposing (onInput)
 
 
+type alias DatePicker = Model
+
 type alias Model =
   { name : String
   , value : String
