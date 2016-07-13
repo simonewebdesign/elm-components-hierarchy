@@ -39,26 +39,27 @@ initialModel =
         )
       ]
   , wrappers =
-      [ ( 0
-        , WFieldset
-            Form.Wrapper.Fieldset.initialModel
-        )
-      , ( 1
+      [
+        --( 0
+        --, WFieldset
+        --    Form.Wrapper.Fieldset.initialModel
+        --)
+        ( 1
         , WFieldset
             { name = "some fieldset defined in the form's initial model"
             , textInputs =
-                [ ( "fubarText"
+                [ ( 60
                   , { name = "someTextFieldBlah", value = "Some initial value" }
                   )
-                , ( "fubazText"
+                , ( 70
                   , { name = "someAnotherTextFieldBlah", value = "Some another initial value" }
                   )
                 ]
             , numberInputs =
-                [ ( "someNumberFieldFubar"
+                [ ( 80
                   , { name = "someNumberField111", value = 111 }
                   )
-                , ( "someAnotherNumberFieldFubaz"
+                , ( 90
                   , { name = "someAnotherNumberField222", value = 222 }
                   )
                 ]

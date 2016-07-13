@@ -58,7 +58,6 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
   div []
-    [ text "Hello, world!"
+    [ Html.map FormMsg (Form.view model.form)
     , text (toString model)
-    , Html.map FormMsg (Form.view model.form)
     ]

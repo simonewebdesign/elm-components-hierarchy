@@ -16,7 +16,7 @@ type alias Model =
 
 
 type alias ID =
-  String
+  Int
 
 type alias IndexedInputText =
   ( ID, Form.Input.Text.Model )
@@ -28,22 +28,8 @@ type alias IndexedInputNumber =
 initialModel : Model
 initialModel =
   { name = "defaultFieldsetName"
-  , textInputs =
-      [ ( "someTextField"
-        , { name = "someTextField", value = "Some initial value" }
-        )
-      , ( "someAnotherTextField"
-        , { name = "someAnotherTextField", value = "Some another initial value" }
-        )
-      ]
-  , numberInputs =
-      [ ( "someNumberField"
-        , { name = "someNumberField", value = 123 }
-        )
-      , ( "someAnotherNumberField"
-        , { name = "someAnotherNumberField", value = 456 }
-        )
-      ]
+  , textInputs = []
+  , numberInputs = []
   }
 
 
