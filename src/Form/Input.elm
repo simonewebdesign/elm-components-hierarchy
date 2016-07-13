@@ -26,22 +26,19 @@ update message model =
       case model of
         IDatePicker mdl ->
           IDatePicker <| Form.Input.DatePicker.update msg mdl
-
-        _ -> IDatePicker Form.Input.DatePicker.initialModel
+        _ -> model
 
     MNumber msg ->
       case model of
         INumber mdl ->
           INumber <| Form.Input.Number.update msg mdl
-
-        _ -> INumber Form.Input.Number.initialModel
+        _ -> model
 
     MText msg ->
       case model of
         IText mdl ->
           IText <| Form.Input.Text.update msg mdl
-
-        _ -> IText Form.Input.Text.initialModel
+        _ -> model
 
 
 view : Model -> Html Msg
