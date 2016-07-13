@@ -40,10 +40,10 @@ type Msg
   = FormMsg Form.Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-  case msg of
-    FormMsg subMsg ->
-      { model | form = Form.update subMsg model.form } ! []
+update message model =
+  case message of
+    FormMsg msg ->
+      { model | form = Form.update msg model.form } ! []
 
 
 -- SUBSCRIPTIONS

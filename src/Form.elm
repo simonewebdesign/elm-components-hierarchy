@@ -75,25 +75,25 @@ type Msg
 
 
 update : Msg -> Model -> Model
-update msg model =
-  case msg of
-    InputMsg id subMsg ->
+update message model =
+  case message of
+    InputMsg id msg ->
       let
         subUpdate ( subId, subModel ) =
           if subId == id then
-            ( id, Form.Input.update subMsg subModel )
+            ( subId, Form.Input.update msg subModel )
           else
-            ( id , subModel )
+            ( subId , subModel )
       in
         { model | inputs = List.map subUpdate model.inputs }
 
-    WrapperMsg id subMsg ->
+    WrapperMsg id msg ->
       let
         subUpdate ( subId, subModel ) =
           if subId == id then
-            ( id, Form.Wrapper.update subMsg subModel )
+            ( subId, Form.Wrapper.update msg subModel )
           else
-            ( id , subModel )
+            ( subId , subModel )
       in
         { model | wrappers = List.map subUpdate model.wrappers }
 

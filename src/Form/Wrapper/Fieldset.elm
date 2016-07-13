@@ -46,9 +46,9 @@ update msg model =
         updateInput =
           \( subId, subModel ) ->
             if subId == id then
-              ( id, Form.Input.Text.update subMsg subModel )
+              ( subId, Form.Input.Text.update subMsg subModel )
             else
-              ( id, subModel )
+              ( subId, subModel )
       in
         { model | textInputs = List.map updateInput model.textInputs }
 
@@ -57,9 +57,9 @@ update msg model =
         updateInput =
           \( subId, subModel ) ->
             if subId == id then
-              ( id, Form.Input.Number.update subMsg subModel )
+              ( subId, Form.Input.Number.update subMsg subModel )
             else
-              ( id, subModel )
+              ( subId, subModel )
       in
         { model | numberInputs = List.map updateInput model.numberInputs }
 
