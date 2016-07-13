@@ -11,12 +11,6 @@ import Form.Wrapper exposing (..)
 -- just because we need the initialModel for demo
 import Form.Wrapper.Fieldset
 
--- because we are updating each single model separately, which is a bit weird
-import Form.Input.DatePicker
-import Form.Input.Number
-import Form.Input.Text
--- TODO: We're going to need an extra layer (Form.Section probably)
-
 
 type alias Model =
   { inputs : List IndexedInput
@@ -84,56 +78,21 @@ update msg model =
   case msg of
     InputMsg id subMsg ->
       let
-        subUpdate =
-          \( subId, subModel ) ->
-            if subId == id then
-              case subModel of
-                IDatePicker subMdl ->
-                  let
-                    sMsg =
-                      case subMsg of
-                        MDatePicker m -> m
-                        _ -> Form.Input.DatePicker.Change "DAMMIT!"
-                  in
-                    ( id, IDatePicker <| Form.Input.DatePicker.update sMsg subMdl )
-
-                INumber subMdl ->
-                  let
-                    sMsg =
-                      case subMsg of
-                        MNumber m -> m
-                        _ -> Form.Input.Number.Change -1
-                  in
-                    ( id, INumber <| Form.Input.Number.update sMsg subMdl )
-
-                IText subMdl ->
-                  let
-                    sMsg =
-                      case subMsg of
-                        MText m -> m
-                        _ -> Form.Input.Text.Change "ARGH!"
-                  in
-                    ( id, IText <| Form.Input.Text.update sMsg subMdl )
-            else
-              ( id, subModel )
+        subUpdate ( subId, subModel ) =
+          if subId == id then
+            ( id, Form.Input.update subMsg subModel )
+          else
+            ( id , subModel )
       in
         { model | inputs = List.map subUpdate model.inputs }
 
     WrapperMsg id subMsg ->
       let
-        subUpdate =
-          \( subId, subModel ) ->
-            if subId == id then
-              case subModel of
-                WFieldset subMdl ->
-                  let
-                    sMsg =
-                      case subMsg of
-                        MFieldset m -> m
-                  in
-                    ( id, WFieldset <| Form.Wrapper.Fieldset.update sMsg subMdl )
-            else
-              ( id, subModel )
+        subUpdate ( subId, subModel ) =
+          if subId == id then
+            ( id, Form.Wrapper.update subMsg subModel )
+          else
+            ( id , subModel )
       in
         { model | wrappers = List.map subUpdate model.wrappers }
 
